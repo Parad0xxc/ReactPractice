@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles/App.css";
-import { PostItem } from "./components/PostItem";
 import { PostList } from "./components/PostList";
+import { PostForm } from "./components/PostForm";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -9,9 +9,22 @@ function App() {
     { id: 2, title: "Javascript 2", body: "Description" },
     { id: 3, title: "Javascript 3", body: "Description" },
   ]);
+
+  const createPost = (newPost) => {
+    setPosts([...posts, newPost]);
+  };
+  const removePost = (post) => {
+    setPosts(posts.filter((p) => p.id !== post.id));
+  };
+
   return (
     <div className="App">
-      <PostList posts={posts} title={"Список постов 1"} />
+      <PostForm create={createPost} />
+      {posts.length ? (
+        <PostList remove={removePost} posts={posts} title={"Список постов 1"} />
+      ) : (
+        <h1 style={{ textAlign: "center" }}>Посты не найдены!</h1>
+      )}
     </div>
   );
 }

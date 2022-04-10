@@ -16,7 +16,7 @@
 .post {
     display: flex;
     padding: 14px;
-    border: 2px solid #CCCCCC;
+    border: 2px solid teal;
     margin-top: 14px;
     align-items: center;
     justify-content: space-between;
